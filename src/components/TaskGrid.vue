@@ -2,8 +2,11 @@
     <div>
         <template>
             <v-layout justify-center>
-                <v-flex xs2>
-                    <task v-for="task in tasks" :key="task.name" :task=task></task>
+                <v-flex xs3>
+                    <div v-if="tasks.length">                        
+                        <task v-for="(task, i) in tasks" :key="task.name" :task=task @taskDeleted="$emit('taskDeleted', i)" @taskStateChanged="$emit('taskStateChanged', i)"></task>
+                    </div>
+                    <h1 v-else>Sua vida esta em dia 😁</h1>
                 </v-flex>
             </v-layout>
         </template>
@@ -26,7 +29,9 @@
             return {
 
             }
-        }
+        },
+        methods: {
+        },
     };
 </script>
 

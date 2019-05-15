@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card class="mt-3"  :class="stateClass">  
+        <v-card class="mt-3" :class="stateClass" @click="$emit('taskStateChanged', task)">  
             <v-card-title primary-title>
                 <div style="display: flex">
                     <h3 class="">{{ task.name }}</h3>
@@ -8,7 +8,7 @@
             </v-card-title>
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn icon>
+                <v-btn icon @click="$emit('taskDeleted', task)">
                     <v-icon>delete</v-icon>
                 </v-btn>
             </v-card-actions>
@@ -45,5 +45,9 @@ export default {
     .done{
         background-color: #2e7d32 !important;
         border-color: #2e7d32 !important;
+    }
+    .done h3 {
+        color: #000000;
+        text-decoration: line-through;
     }
 </style>
